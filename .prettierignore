@@ -1,0 +1,18 @@
+node_modules/
+dist/
+dist-ssr/
+.output/
+.tanstack/
+.nitro/
+.vinxi/
+.wrangler/
+coverage/
+playwright-report/
+test-results/
+src/generated/
+src/routeTree.gen.ts
+package-lock.json
+
+# Benchmark context & raw seed assets
+seed-assets/
+context/

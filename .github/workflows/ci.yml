@@ -1,0 +1,172 @@
+# GitHub discovers workflow files in .github/workflows/ after they are pushed.
+# This workflow checks the current scaffold; it does not deploy the application.
+# Its project checks match npm run validate in package.json, split into separate
+# steps so the Actions page shows exactly which command failed.
+#
+# Reading this YAML:
+#   - Indentation nests settings; use spaces, not tabs.
+#   - A line starting with # is a comment and does not execute.
+#   - A leading - adds an item to a list, such as a step.
+#   - A | after run: starts a shell script spanning several lines.
+#   - ${{ ... }} is an expression GitHub evaluates, not a shell command.
+# The hierarchy is workflow -> jobs -> steps. Steps within a job run in order.
+
+# This is the workflow's display name in the repository's Actions tab.
+name: CI
+
+# These events decide WHEN GitHub starts a new workflow run.
+on:
+  # The branch filter refers to the PR's destination branch, not its source.
+  # By default, opening, reopening or updating a PR targeting main runs CI.
+  # A normal PR checkout tests GitHub's proposed merge with the base branch.
+  pull_request:
+    branches: [main]
+
+  # Also check the actual main commit after a merge or another permitted push.
+  # This is a separate run from the checks on the proposed PR merge.
+  push:
+    branches: [main]
+
+  # Adds a Run workflow button once this file exists on the default branch.
+  workflow_dispatch:
+
+# No path filter: even documentation PRs produce the required check.
+# Otherwise, a skipped workflow could leave a PR waiting for a missing check.
+
+# GitHub automatically supplies a GITHUB_TOKEN for repository access.
+# This workflow needs only read access to fetch code. It cannot use that token
+# to push commits, approve PRs or publish packages. No personal token is needed.
+# Permissions not listed here are disabled for that token.
+permissions:
+  contents: read
+
+# Save runner time when someone pushes several updates to the same PR.
+# The workflow name separates this group from other workflows. The PR number
+# groups runs of that PR; non-PR runs use a unique run ID instead.
+# Only PR runs cancel their older run. Main/manual runs are not grouped together.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# Jobs are groups of steps. Without needs:, separate jobs can run in parallel.
+# Here, required explicitly waits for quality, so the two jobs run in sequence.
+jobs:
+  # quality is the internal job ID, used later in needs.quality.result.
+  quality:
+    # name is the label humans see in the Actions job list.
+    name: Quality and build
+
+    # GitHub provides a fresh Linux virtual machine for this job.
+    # Pin the Ubuntu release rather than following the ubuntu-latest label.
+    # The machine is temporary; it is not a Railway server or your laptop.
+    runs-on: ubuntu-24.04
+
+    # Stop a stuck job after 15 minutes. This limits this job's runtime; it is
+    # not an account spending cap. There is no multi-version test matrix here.
+    timeout-minutes: 15
+
+    steps:
+      # uses: runs a reusable action. This one fetches repository files onto the
+      # runner. Subsequent run: commands start in the checked-out repository.
+      # A full commit SHA pins the action's implementation to reviewed code;
+      # updating it is a deliberate dependency update, rather than a moving tag.
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # with: supplies inputs to the action above.
+        with:
+          # Fetching still works, but do not leave its token in Git config for
+          # subsequent project commands. This job has no reason to push code.
+          persist-credentials: false
+
+      # Install the same Node version developers use locally.
+      - name: Set up Node.js and dependency caching
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # .nvmrc is the shared Node pin; do not duplicate its version here.
+          node-version-file: .nvmrc
+          # Cache npm's downloaded package data to speed up later runs.
+          # This does NOT cache node_modules or replace npm ci.
+          cache: npm
+          # Changes to the lockfile change the dependency cache key.
+          cache-dependency-path: package-lock.json
+
+      # Node ships with npm, but its bundled npm might differ from our pin.
+      # Read the exact version from package.json before installing dependencies:
+      # .npmrc enables engine-strict, so the wrong npm version must not be used.
+      - name: Select the pinned npm version
+        run: |
+          npm_version="$(node -p "require('./package.json').engines.npm")"
+          npm install --global "npm@${npm_version}"
+          node --version
+          npm --version
+        # npm_version is a shell variable, unlike GitHub's ${{ ... }} syntax.
+        # --global changes only this temporary runner's npm installation.
+
+      # run: executes a terminal command, just as you would run it locally.
+      # npm ci installs the locked dependencies, including development tools.
+      # It fails if package.json and package-lock.json disagree and does not
+      # rewrite the lockfile to make them match. Never replace it with npm install
+      # just to work around a stale lockfile; fix and commit the lockfile locally.
+      - name: Install dependencies from the lockfile
+        run: npm ci
+
+      # npm run looks up a script in package.json. For example, format:check
+      # expands to prettier --check .; npm is not the formatting tool itself.
+      # Check formatting without rewriting anyone's files in CI.
+      - name: Check formatting
+        run: npm run format:check
+
+      # ESLint checks code rules, including React Hooks. Our lint script uses
+      # --max-warnings=0, so warnings also cause the command to fail.
+      - name: Lint the code
+        run: npm run lint
+
+      # Build the production application to catch bundling/configuration issues.
+      # This also generates TanStack route declarations needed by typecheck.
+      # Building creates files on the runner; it does not deploy or commit them.
+      - name: Build the production application
+        run: npm run build
+
+      # Run TypeScript's dedicated check after route generation. --noEmit in
+      # package.json checks types without producing another compiled output.
+      - name: Check TypeScript types
+        run: npm run typecheck
+
+    # A nonzero command exit status fails its step and this job. Later ordinary
+    # steps are then skipped. There is no continue-on-error to hide failures.
+    # Unit, integration and browser suites are not configured yet; none is run
+    # or counted as passing here. A successful build does not prove behavior.
+
+  # This small job turns the prerequisite job's outcome into one stable check.
+  # Keeping a separate final check lets branch rules keep the same check name
+  # when real test jobs are added later; those jobs must also be added to needs
+  # and checked here before they become prerequisites.
+  required:
+    # Select this exact job check in GitHub's ruleset after its first real run.
+    # name: CI at the top names the workflow; this names the final job check.
+    name: CI / required
+
+    # Wait for quality and make its result available as needs.quality.result.
+    needs: [quality]
+
+    # Without always(), a failed/skipped prerequisite would normally skip this
+    # job too. Ask GitHub to evaluate the final gate even after such outcomes.
+    # Canceling the entire workflow can still leave a canceled run; that is not
+    # a successful required check. New PR updates run their own fresh checks.
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+
+    steps:
+      # This job gets a different fresh runner. It only inspects the outcome
+      # supplied by GitHub, so it needs no checkout, Node setup or npm install.
+      - name: Require the quality job to succeed
+        # env: passes the GitHub result into a shell environment variable.
+        env:
+          QUALITY_RESULT: ${{ needs.quality.result }}
+        run: |
+          printf 'Quality job result: %s\n' "$QUALITY_RESULT"
+          test "$QUALITY_RESULT" = "success"
+        # test exits 0 only for success; failure, cancelled and skipped fail.
+        # A failed gate blocks merging only AFTER this check is required in an
+        # active GitHub ruleset. This YAML creates checks, not branch protection.

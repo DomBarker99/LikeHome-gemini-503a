@@ -1,0 +1,362 @@
+[
+  {
+    "file": "/images/hotels/photo-01.webp",
+    "type": "exterior",
+    "region": "california-spanish-colonial",
+    "description": "Spanish Colonial revival downtown hotel courtyard pool at golden hour"
+  },
+  {
+    "file": "/images/hotels/photo-02.webp",
+    "type": "exterior",
+    "region": "california-beverly-hills",
+    "description": "Mediterranean villa hotel with palm-lined courtyard fountain"
+  },
+  {
+    "file": "/images/hotels/photo-03.webp",
+    "type": "exterior",
+    "region": "california-coastal",
+    "description": "Santa Monica oceanfront boutique hotel overlooking the Pacific"
+  },
+  {
+    "file": "/images/hotels/photo-04.webp",
+    "type": "exterior",
+    "region": "california-west-hollywood",
+    "description": "Lush West Hollywood villa retreat with candlelit garden path"
+  },
+  {
+    "file": "/images/hotels/photo-05.webp",
+    "type": "exterior",
+    "region": "california-craftsman",
+    "description": "Pasadena Craftsman timber estate hotel in manicured gardens"
+  },
+  {
+    "file": "/images/hotels/photo-06.webp",
+    "type": "exterior",
+    "region": "san-francisco-landmark",
+    "description": "Beaux-Arts landmark hotel atop Nob Hill with bay views"
+  },
+  {
+    "file": "/images/hotels/photo-07.webp",
+    "type": "exterior",
+    "region": "san-francisco-waterfront",
+    "description": "Embarcadero waterfront hotel with Bay Bridge lights"
+  },
+  {
+    "file": "/images/hotels/photo-08.webp",
+    "type": "exterior",
+    "region": "san-francisco-victorian",
+    "description": "Pacific Heights Victorian boutique hotel on hilly street"
+  },
+  {
+    "file": "/images/hotels/photo-09.webp",
+    "type": "exterior",
+    "region": "new-york-soho",
+    "description": "SoHo cast-iron loft hotel facade on cobblestone street"
+  },
+  {
+    "file": "/images/hotels/photo-10.webp",
+    "type": "exterior",
+    "region": "new-york-midtown",
+    "description": "Midtown Manhattan limestone luxury tower near Bryant Park"
+  },
+  {
+    "file": "/images/hotels/photo-11.webp",
+    "type": "exterior",
+    "region": "chicago-riverwalk",
+    "description": "Chicago Riverwalk architectural glass-and-steel hotel"
+  },
+  {
+    "file": "/images/hotels/photo-12.webp",
+    "type": "exterior",
+    "region": "seattle-waterfront",
+    "description": "Seattle Elliott Bay cedar-and-glass waterfront lodge"
+  },
+  {
+    "file": "/images/hotels/photo-13.webp",
+    "type": "exterior",
+    "region": "miami-art-deco",
+    "description": "Miami South Beach Art Deco pastel oceanfront hotel with pool"
+  },
+  {
+    "file": "/images/hotels/photo-14.webp",
+    "type": "exterior",
+    "region": "austin-rooftop",
+    "description": "Austin limestone-and-steel boutique hotel with rooftop infinity pool"
+  },
+  {
+    "file": "/images/hotels/photo-15.webp",
+    "type": "exterior",
+    "region": "boston-brick",
+    "description": "Boston Back Bay historic red-brick mansard brownstone hotel"
+  },
+  {
+    "file": "/images/hotels/photo-16.webp",
+    "type": "exterior",
+    "region": "denver-mountain",
+    "description": "Colorado timber-and-stone mountain lodge hotel with firepit"
+  },
+  {
+    "file": "/images/hotels/photo-17.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Luxury king hotel suite with floor-to-ceiling city skyline view"
+  },
+  {
+    "file": "/images/hotels/photo-18.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Coastal double queen hotel room with ocean balcony"
+  },
+  {
+    "file": "/images/hotels/photo-19.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Boutique loft twin bedroom with exposed brick and industrial windows"
+  },
+  {
+    "file": "/images/hotels/photo-20.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Five-star hotel marble bathroom with freestanding soaking tub"
+  },
+  {
+    "file": "/images/hotels/photo-21.webp",
+    "type": "exterior",
+    "region": "southwest-desert",
+    "description": "Scottsdale/Sedona desert modern resort with infinity pool and red rocks"
+  },
+  {
+    "file": "/images/hotels/photo-22.webp",
+    "type": "exterior",
+    "region": "southern-courtyard",
+    "description": "New Orleans French Quarter wrought-iron balcony courtyard hotel"
+  },
+  {
+    "file": "/images/hotels/photo-23.webp",
+    "type": "exterior",
+    "region": "southern-historic",
+    "description": "Savannah/Charleston pastel historic mansion hotel with live oaks"
+  },
+  {
+    "file": "/images/hotels/photo-24.webp",
+    "type": "exterior",
+    "region": "hawaii-tropical",
+    "description": "Hawaiian oceanfront resort with palm lagoon and volcanic cliffs"
+  },
+  {
+    "file": "/images/hotels/photo-25.webp",
+    "type": "exterior",
+    "region": "las-vegas-modern",
+    "description": "Modern glass resort tower with illuminated palm reflection pools"
+  },
+  {
+    "file": "/images/hotels/photo-26.webp",
+    "type": "exterior",
+    "region": "san-diego-mission",
+    "description": "Coronado coastal Spanish Mission resort overlooking Pacific beach"
+  },
+  {
+    "file": "/images/hotels/photo-27.webp",
+    "type": "exterior",
+    "region": "mid-atlantic",
+    "description": "Washington DC neoclassical limestone boutique hotel"
+  },
+  {
+    "file": "/images/hotels/photo-28.webp",
+    "type": "exterior",
+    "region": "philadelphia-brick",
+    "description": "Rittenhouse Square historic red-brick and limestone hotel"
+  },
+  {
+    "file": "/images/hotels/photo-29.webp",
+    "type": "exterior",
+    "region": "nashville-brick",
+    "description": "Nashville warehouse-district brick-and-steel boutique hotel"
+  },
+  {
+    "file": "/images/hotels/photo-30.webp",
+    "type": "exterior",
+    "region": "new-england-coastal",
+    "description": "Maine weathered cedar shingle coastal inn overlooking harbor"
+  },
+  {
+    "file": "/images/hotels/photo-31.webp",
+    "type": "exterior",
+    "region": "wine-country",
+    "description": "Napa Valley stone-and-cypress vineyard estate resort"
+  },
+  {
+    "file": "/images/hotels/photo-32.webp",
+    "type": "exterior",
+    "region": "santa-fe-adobe",
+    "description": "Santa Fe Pueblo Revival adobe resort with kiva fireplace"
+  },
+  {
+    "file": "/images/hotels/photo-33.webp",
+    "type": "exterior",
+    "region": "lakefront",
+    "description": "Lake Tahoe/Michigan grand timber-and-stone lakefront lodge"
+  },
+  {
+    "file": "/images/hotels/photo-34.webp",
+    "type": "exterior",
+    "region": "midwest-atrium",
+    "description": "Minneapolis Nordic glass-and-limestone atrium hotel"
+  },
+  {
+    "file": "/images/hotels/photo-35.webp",
+    "type": "exterior",
+    "region": "atlanta-peachtree",
+    "description": "Midtown glass tower hotel with landscaped terrace garden"
+  },
+  {
+    "file": "/images/hotels/photo-36.webp",
+    "type": "exterior",
+    "region": "florida-gulf",
+    "description": "Florida Keys white-stucco beachfront resort with turquoise cabanas"
+  },
+  {
+    "file": "/images/hotels/photo-37.webp",
+    "type": "exterior",
+    "region": "pacific-northwest-forest",
+    "description": "Oregon coastal cedar lodge nestled in evergreen forest"
+  },
+  {
+    "file": "/images/hotels/photo-38.webp",
+    "type": "exterior",
+    "region": "brooklyn-waterfront",
+    "description": "Brooklyn waterfront converted brick warehouse hotel"
+  },
+  {
+    "file": "/images/hotels/photo-39.webp",
+    "type": "exterior",
+    "region": "texas-mission",
+    "description": "San Antonio Riverwalk Spanish limestone arch boutique hotel"
+  },
+  {
+    "file": "/images/hotels/photo-40.webp",
+    "type": "exterior",
+    "region": "alaska-mountain",
+    "description": "Chugach mountain glass-and-spruce wilderness lodge"
+  },
+  {
+    "file": "/images/hotels/photo-41.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Penthouse corner king suite with panoramic twilight skyline views"
+  },
+  {
+    "file": "/images/hotels/photo-42.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "California coastal suite with white oak floors and ocean terrace"
+  },
+  {
+    "file": "/images/hotels/photo-43.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Mountain lodge king bedroom with stone fireplace and timber beams"
+  },
+  {
+    "file": "/images/hotels/photo-44.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Minimalist Japanese-Scandinavian studio hotel room"
+  },
+  {
+    "file": "/images/hotels/photo-45.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Classic New England double queen room with upholstered headboards"
+  },
+  {
+    "file": "/images/hotels/photo-46.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Desert modern suite with terracotta plaster walls and cactus patio"
+  },
+  {
+    "file": "/images/hotels/photo-47.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Art Deco ocean-view king room with curved walnut furniture"
+  },
+  {
+    "file": "/images/hotels/photo-48.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Executive two-room family suite with velvet sofa and dining table"
+  },
+  {
+    "file": "/images/hotels/photo-49.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Historic French Quarter suite with tall shuttered balcony doors"
+  },
+  {
+    "file": "/images/hotels/photo-50.webp",
+    "type": "interior-room",
+    "region": "any",
+    "description": "Industrial chic loft twin room with black steel windows"
+  },
+  {
+    "file": "/images/hotels/photo-51.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Rooftop infinity pool deck at sunset with cabanas and fire bowls"
+  },
+  {
+    "file": "/images/hotels/photo-52.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Double-height hotel lobby lounge with fireplace and library shelves"
+  },
+  {
+    "file": "/images/hotels/photo-53.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Sunlit conservatory breakfast restaurant with courtyard olive trees"
+  },
+  {
+    "file": "/images/hotels/photo-54.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Subterranean spa thermal plunge pool with travertine stone walls"
+  },
+  {
+    "file": "/images/hotels/photo-55.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Craft cocktail bar in boutique hotel with emerald tile backbar"
+  },
+  {
+    "file": "/images/hotels/photo-56.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Tropical resort lagoon pool with palm islands and swim-up bar"
+  },
+  {
+    "file": "/images/hotels/photo-57.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Hotel fitness studio with floor-to-ceiling windows overlooking gardens"
+  },
+  {
+    "file": "/images/hotels/photo-58.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Outdoor courtyard firepit lounge at twilight with string lights"
+  },
+  {
+    "file": "/images/hotels/photo-59.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Calacatta marble spa bathroom with rainfall shower and dual vanity"
+  },
+  {
+    "file": "/images/hotels/photo-60.webp",
+    "type": "interior-lounge",
+    "region": "any",
+    "description": "Penthouse rooftop dining terrace overlooking coastal harbor"
+  }
+]

@@ -1,0 +1,1476 @@
+[
+  {
+    "id": "sunset-marquis-la",
+    "name": "Sunset Marquis Retreat",
+    "city": "Los Angeles",
+    "area": "West Hollywood",
+    "address": "1200 Alta Loma Rd, West Hollywood, CA 90069",
+    "shortDescription": "Lush villa hideaway steps from the Sunset Strip with heated pools and private gardens.",
+    "description": "Tucked into three acres of subtropical gardens in West Hollywood, Sunset Marquis Retreat blends California villa calm with immediate access to Los Angeles dining and live music venues.",
+    "rating": 9.5,
+    "stars": 5,
+    "discountPercent": 0,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Parking",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-04.webp",
+      "/images/hotels/photo-35.webp",
+      "/images/hotels/photo-44.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 34.0913,
+    "longitude": -118.3782,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": false,
+    "rooms": [
+      {
+        "id": "sunset-marquis-la-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 18000,
+        "nightlyRateCents": 18000,
+        "sortOrder": 1
+      },
+      {
+        "id": "sunset-marquis-la-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 24500,
+        "nightlyRateCents": 24500,
+        "sortOrder": 2
+      },
+      {
+        "id": "sunset-marquis-la-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 16000,
+        "nightlyRateCents": 16000,
+        "sortOrder": 3
+      },
+      {
+        "id": "sunset-marquis-la-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 32000,
+        "nightlyRateCents": 32000,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "figueroa-downtown-la",
+    "name": "Hotel Figueroa Downtown",
+    "city": "Los Angeles",
+    "area": "Downtown LA",
+    "address": "939 S Figueroa St, Los Angeles, CA 90015",
+    "shortDescription": "Historic Spanish Colonial sanctuary in Downtown LA with courtyard pool and gallery lounge.",
+    "description": "Originally opened in 1926, Hotel Figueroa Downtown pairs restored architecture with modern acoustic guest rooms, an iconic courtyard pool, and walkability to LA Live.",
+    "rating": 9.1,
+    "stars": 4,
+    "discountPercent": 20,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Pool",
+      "Parking",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-22.webp",
+      "/images/hotels/photo-55.webp",
+      "/images/hotels/photo-44.webp",
+      "/images/hotels/photo-37.webp"
+    ],
+    "latitude": 34.0456,
+    "longitude": -118.2641,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "figueroa-downtown-la-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 20000,
+        "nightlyRateCents": 16000,
+        "sortOrder": 1
+      },
+      {
+        "id": "figueroa-downtown-la-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 26500,
+        "nightlyRateCents": 21200,
+        "sortOrder": 2
+      },
+      {
+        "id": "figueroa-downtown-la-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 18000,
+        "nightlyRateCents": 14400,
+        "sortOrder": 3
+      },
+      {
+        "id": "figueroa-downtown-la-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 34000,
+        "nightlyRateCents": 27200,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "santa-monica-breeze-la",
+    "name": "Santa Monica Ocean Breeze",
+    "city": "Los Angeles",
+    "area": "Santa Monica",
+    "address": "1700 Ocean Ave, Santa Monica, CA 90401",
+    "shortDescription": "Coastal boutique hotel overlooking the Santa Monica Pier with oceanfront sundeck.",
+    "description": "Wake up to Pacific breezes two blocks from the Santa Monica Pier. Features complimentary beach cruisers, morning artisanal breakfast, and sunset terrace seating.",
+    "rating": 8.7,
+    "stars": 4,
+    "discountPercent": 15,
+    "amenities": [
+      "WiFi",
+      "Parking",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-02.webp",
+      "/images/hotels/photo-34.webp",
+      "/images/hotels/photo-58.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 34.0099,
+    "longitude": -118.4914,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": false,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "santa-monica-breeze-la-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 14000,
+        "nightlyRateCents": 11900,
+        "sortOrder": 1
+      },
+      {
+        "id": "santa-monica-breeze-la-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 20500,
+        "nightlyRateCents": 17400,
+        "sortOrder": 2
+      },
+      {
+        "id": "santa-monica-breeze-la-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 12000,
+        "nightlyRateCents": 10200,
+        "sortOrder": 3
+      },
+      {
+        "id": "santa-monica-breeze-la-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 28000,
+        "nightlyRateCents": 23800,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "silverlake-loft-la",
+    "name": "Silver Lake Modern Inn",
+    "city": "Los Angeles",
+    "area": "Silver Lake",
+    "address": "3811 Sunset Blvd, Los Angeles, CA 90026",
+    "shortDescription": "Minimalist creative stay in Silver Lake with rooftop coffee bar and fast fiber WiFi.",
+    "description": "Designed for independent travelers and remote creatives, Silver Lake Modern Inn offers sun-drenched rooms, local pour-over coffee, and effortless access to Echo Park and Griffith Observatory.",
+    "rating": 8.4,
+    "stars": 3,
+    "discountPercent": 0,
+    "amenities": [
+      "WiFi",
+      "Air conditioning",
+      "Parking"
+    ],
+    "images": [
+      "/images/hotels/photo-21.webp",
+      "/images/hotels/photo-31.webp",
+      "/images/hotels/photo-57.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 34.0897,
+    "longitude": -118.2788,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": false,
+    "featuredDiscounted": false,
+    "rooms": [
+      {
+        "id": "silverlake-loft-la-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 13500,
+        "nightlyRateCents": 13500,
+        "sortOrder": 1
+      },
+      {
+        "id": "silverlake-loft-la-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 20000,
+        "nightlyRateCents": 20000,
+        "sortOrder": 2
+      },
+      {
+        "id": "silverlake-loft-la-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 11500,
+        "nightlyRateCents": 11500,
+        "sortOrder": 3
+      },
+      {
+        "id": "silverlake-loft-la-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 27500,
+        "nightlyRateCents": 27500,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "beverly-terrace-la",
+    "name": "The Beverly Garden Terrace",
+    "city": "Los Angeles",
+    "area": "Beverly Hills",
+    "address": "469 N Canon Dr, Beverly Hills, CA 90210",
+    "shortDescription": "Refined Beverly Hills residence with citrus courtyard breakfast and valet parking.",
+    "description": "Steps from Rodeo Drive, The Beverly Garden Terrace provides quiet residential-style suites, a heated saltwater lap pool, and complimentary morning pastries in the citrus courtyard.",
+    "rating": 9.3,
+    "stars": 5,
+    "discountPercent": 25,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Parking",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-19.webp",
+      "/images/hotels/photo-54.webp",
+      "/images/hotels/photo-38.webp",
+      "/images/hotels/photo-33.webp"
+    ],
+    "latitude": 34.0718,
+    "longitude": -118.4012,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "beverly-terrace-la-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 24000,
+        "nightlyRateCents": 18000,
+        "sortOrder": 1
+      },
+      {
+        "id": "beverly-terrace-la-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 30500,
+        "nightlyRateCents": 22900,
+        "sortOrder": 2
+      },
+      {
+        "id": "beverly-terrace-la-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 22000,
+        "nightlyRateCents": 16500,
+        "sortOrder": 3
+      },
+      {
+        "id": "beverly-terrace-la-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 38000,
+        "nightlyRateCents": 28500,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "pasadena-arroyo-la",
+    "name": "Pasadena Arroyo Grand",
+    "city": "Los Angeles",
+    "area": "Pasadena",
+    "address": "1401 S Oak Knoll Ave, Pasadena, CA 91106",
+    "shortDescription": "Craftsman estate hotel surrounded by manicured foothill gardens and shaded verandas.",
+    "description": "Set at the base of the San Gabriel Mountains, Pasadena Arroyo Grand combines historic California Craftsman woodwork with modern luxury suites and mountain-view terraces.",
+    "rating": 8.9,
+    "stars": 4,
+    "discountPercent": 0,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Parking",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-28.webp",
+      "/images/hotels/photo-40.webp",
+      "/images/hotels/photo-53.webp",
+      "/images/hotels/photo-37.webp"
+    ],
+    "latitude": 34.1225,
+    "longitude": -118.1332,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": false,
+    "rooms": [
+      {
+        "id": "pasadena-arroyo-la-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 15000,
+        "nightlyRateCents": 15000,
+        "sortOrder": 1
+      },
+      {
+        "id": "pasadena-arroyo-la-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 21500,
+        "nightlyRateCents": 21500,
+        "sortOrder": 2
+      },
+      {
+        "id": "pasadena-arroyo-la-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 13000,
+        "nightlyRateCents": 13000,
+        "sortOrder": 3
+      },
+      {
+        "id": "pasadena-arroyo-la-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 29000,
+        "nightlyRateCents": 29000,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "fairmont-nob-hill-sf",
+    "name": "Nob Hill Crown Palace",
+    "city": "San Francisco",
+    "area": "Nob Hill",
+    "address": "950 Mason St, San Francisco, CA 94108",
+    "shortDescription": "Landmark hilltop hotel where all three cable car lines meet, with sweeping Bay views.",
+    "description": "Perched atop Nob Hill, Nob Hill Crown Palace delivers classic San Francisco grandeur, vaulted marble lobbies, and panoramic views stretching from Coit Tower to the Golden Gate.",
+    "rating": 9.4,
+    "stars": 5,
+    "discountPercent": 0,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Parking",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-03.webp",
+      "/images/hotels/photo-35.webp",
+      "/images/hotels/photo-37.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 37.7924,
+    "longitude": -122.4102,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": false,
+    "rooms": [
+      {
+        "id": "fairmont-nob-hill-sf-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 21000,
+        "nightlyRateCents": 21000,
+        "sortOrder": 1
+      },
+      {
+        "id": "fairmont-nob-hill-sf-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 27500,
+        "nightlyRateCents": 27500,
+        "sortOrder": 2
+      },
+      {
+        "id": "fairmont-nob-hill-sf-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 19000,
+        "nightlyRateCents": 19000,
+        "sortOrder": 3
+      },
+      {
+        "id": "fairmont-nob-hill-sf-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 35000,
+        "nightlyRateCents": 35000,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "embarcadero-harbor-sf",
+    "name": "Embarcadero Bayfront Hotel",
+    "city": "San Francisco",
+    "area": "Embarcadero",
+    "address": "8 Mission St, San Francisco, CA 94105",
+    "shortDescription": "Waterfront rooms across from the Ferry Building with private Bay Bridge balconies.",
+    "description": "Step outside to the Ferry Building Marketplace and waterfront promenade. Every room features floor-to-ceiling windows, artisan coffee, and quiet double-pane acoustic glazing.",
+    "rating": 9,
+    "stars": 4,
+    "discountPercent": 30,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-25.webp",
+      "/images/hotels/photo-55.webp",
+      "/images/hotels/photo-57.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 37.7936,
+    "longitude": -122.3934,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "embarcadero-harbor-sf-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 30000,
+        "nightlyRateCents": 21000,
+        "sortOrder": 1
+      },
+      {
+        "id": "embarcadero-harbor-sf-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 36500,
+        "nightlyRateCents": 25600,
+        "sortOrder": 2
+      },
+      {
+        "id": "embarcadero-harbor-sf-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 28000,
+        "nightlyRateCents": 19600,
+        "sortOrder": 3
+      },
+      {
+        "id": "embarcadero-harbor-sf-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 44000,
+        "nightlyRateCents": 30800,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "presidio-lodge-sf",
+    "name": "Presidio Parkside Lodge",
+    "city": "San Francisco",
+    "area": "Presidio",
+    "address": "105 Montgomery St, San Francisco, CA 94129",
+    "shortDescription": "National park lodge with eucalyptus trail access, firepit courtyard, and Golden Gate views.",
+    "description": "Located inside the historic Presidio of San Francisco, this lodge offers peaceful trail access, evening courtyard firepits, and complimentary morning breakfast.",
+    "rating": 9.2,
+    "stars": 4,
+    "discountPercent": 15,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Parking",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-48.webp",
+      "/images/hotels/photo-40.webp",
+      "/images/hotels/photo-43.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 37.7989,
+    "longitude": -122.4581,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "presidio-lodge-sf-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 20000,
+        "nightlyRateCents": 17000,
+        "sortOrder": 1
+      },
+      {
+        "id": "presidio-lodge-sf-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 26500,
+        "nightlyRateCents": 22500,
+        "sortOrder": 2
+      },
+      {
+        "id": "presidio-lodge-sf-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 18000,
+        "nightlyRateCents": 15300,
+        "sortOrder": 3
+      },
+      {
+        "id": "presidio-lodge-sf-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 34000,
+        "nightlyRateCents": 28900,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "soho-cast-iron-ny",
+    "name": "SoHo Cast-Iron Lofts",
+    "city": "New York",
+    "area": "SoHo",
+    "address": "310 West Broadway, New York, NY 10013",
+    "shortDescription": "High-ceiling Manhattan loft hotel with rooftop greenhouse breakfast and cobblestone views.",
+    "description": "Built inside an 1890s cast-iron textile landmark in SoHo, our residential-scale rooms feature exposed brick, oversized factory windows, and a sunlit rooftop conservatory.",
+    "rating": 9.6,
+    "stars": 5,
+    "discountPercent": 0,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-01.webp",
+      "/images/hotels/photo-32.webp",
+      "/images/hotels/photo-57.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 40.7223,
+    "longitude": -74.0038,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/New_York",
+    "featuredTopRated": true,
+    "featuredDiscounted": false,
+    "rooms": [
+      {
+        "id": "soho-cast-iron-ny-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 26000,
+        "nightlyRateCents": 26000,
+        "sortOrder": 1
+      },
+      {
+        "id": "soho-cast-iron-ny-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 32500,
+        "nightlyRateCents": 32500,
+        "sortOrder": 2
+      },
+      {
+        "id": "soho-cast-iron-ny-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 24000,
+        "nightlyRateCents": 24000,
+        "sortOrder": 3
+      },
+      {
+        "id": "soho-cast-iron-ny-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 40000,
+        "nightlyRateCents": 40000,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "bryant-park-atelier-ny",
+    "name": "Bryant Park Atelier Hotel",
+    "city": "New York",
+    "area": "Midtown",
+    "address": "40 W 40th St, New York, NY 10018",
+    "shortDescription": "Architectural Midtown tower overlooking Bryant Park and the New York Public Library.",
+    "description": "Enjoy park views in the center of Manhattan. Guests receive complimentary espresso and breakfast in the library lounge and direct subway access one block away.",
+    "rating": 8.8,
+    "stars": 4,
+    "discountPercent": 20,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-18.webp",
+      "/images/hotels/photo-54.webp",
+      "/images/hotels/photo-37.webp",
+      "/images/hotels/photo-35.webp"
+    ],
+    "latitude": 40.7529,
+    "longitude": -73.9837,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/New_York",
+    "featuredTopRated": false,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "bryant-park-atelier-ny-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 22500,
+        "nightlyRateCents": 18000,
+        "sortOrder": 1
+      },
+      {
+        "id": "bryant-park-atelier-ny-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 29000,
+        "nightlyRateCents": 23200,
+        "sortOrder": 2
+      },
+      {
+        "id": "bryant-park-atelier-ny-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 20500,
+        "nightlyRateCents": 16400,
+        "sortOrder": 3
+      },
+      {
+        "id": "bryant-park-atelier-ny-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 36500,
+        "nightlyRateCents": 29200,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "pike-place-waterfront-sea",
+    "name": "Elliott Bay Waterfront Inn",
+    "city": "Seattle",
+    "area": "Waterfront",
+    "address": "2411 Alaskan Way, Seattle, WA 98121",
+    "shortDescription": "Over-water lodge on Puget Sound with Olympic Mountain views and cedar fireplace lounge.",
+    "description": "Built directly over Pier 67 on Elliott Bay, every suite watches ferries cross Puget Sound toward the Olympic Peninsula, five minutes from Pike Place Market.",
+    "rating": 9.3,
+    "stars": 5,
+    "discountPercent": 0,
+    "amenities": [
+      "WiFi",
+      "Parking",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-06.webp",
+      "/images/hotels/photo-40.webp",
+      "/images/hotels/photo-53.webp",
+      "/images/hotels/photo-37.webp"
+    ],
+    "latitude": 47.6131,
+    "longitude": -122.3526,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": true,
+    "featuredDiscounted": false,
+    "rooms": [
+      {
+        "id": "pike-place-waterfront-sea-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 19500,
+        "nightlyRateCents": 19500,
+        "sortOrder": 1
+      },
+      {
+        "id": "pike-place-waterfront-sea-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 26000,
+        "nightlyRateCents": 26000,
+        "sortOrder": 2
+      },
+      {
+        "id": "pike-place-waterfront-sea-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 17500,
+        "nightlyRateCents": 17500,
+        "sortOrder": 3
+      },
+      {
+        "id": "pike-place-waterfront-sea-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 33500,
+        "nightlyRateCents": 33500,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "south-lake-union-sea",
+    "name": "South Lake Union Timber Hotel",
+    "city": "Seattle",
+    "area": "South Lake Union",
+    "address": "400 Fairview Ave N, Seattle, WA 98109",
+    "shortDescription": "Mass-timber eco hotel with Lake Union kayak dock, sauna, and complimentary breakfast.",
+    "description": "Crafted from Pacific Northwest cross-laminated timber, this quiet urban hotel includes hot breakfast, secure underground parking, and rooftop views of seaplanes landing on Lake Union.",
+    "rating": 8.6,
+    "stars": 4,
+    "discountPercent": 20,
+    "amenities": [
+      "WiFi",
+      "Breakfast",
+      "Parking",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-59.webp",
+      "/images/hotels/photo-31.webp",
+      "/images/hotels/photo-53.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 47.6224,
+    "longitude": -122.3343,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Los_Angeles",
+    "featuredTopRated": false,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "south-lake-union-sea-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 17500,
+        "nightlyRateCents": 14000,
+        "sortOrder": 1
+      },
+      {
+        "id": "south-lake-union-sea-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 24000,
+        "nightlyRateCents": 19200,
+        "sortOrder": 2
+      },
+      {
+        "id": "south-lake-union-sea-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 15500,
+        "nightlyRateCents": 12400,
+        "sortOrder": 3
+      },
+      {
+        "id": "south-lake-union-sea-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 31500,
+        "nightlyRateCents": 25200,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "south-beach-palms-mia",
+    "name": "South Beach Art Deco Palms",
+    "city": "Miami",
+    "area": "South Beach",
+    "address": "1601 Collins Ave, Miami Beach, FL 33139",
+    "shortDescription": "Oceanfront Art Deco resort with palm-lined infinity pool and direct boardwalk beach access.",
+    "description": "Restored 1939 Art Deco oceanfront landmark on Collins Avenue featuring two lagoon pools, tropical breakfast cabanas, and direct access to Miami Beach.",
+    "rating": 9.1,
+    "stars": 5,
+    "discountPercent": 25,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Breakfast",
+      "Parking",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-09.webp",
+      "/images/hotels/photo-34.webp",
+      "/images/hotels/photo-39.webp",
+      "/images/hotels/photo-33.webp"
+    ],
+    "latitude": 25.7897,
+    "longitude": -80.1297,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/New_York",
+    "featuredTopRated": true,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "south-beach-palms-mia-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 22000,
+        "nightlyRateCents": 16500,
+        "sortOrder": 1
+      },
+      {
+        "id": "south-beach-palms-mia-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 28500,
+        "nightlyRateCents": 21400,
+        "sortOrder": 2
+      },
+      {
+        "id": "south-beach-palms-mia-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 20000,
+        "nightlyRateCents": 15000,
+        "sortOrder": 3
+      },
+      {
+        "id": "south-beach-palms-mia-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 36000,
+        "nightlyRateCents": 27000,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "riverwalk-arch-chi",
+    "name": "Chicago Riverwalk Exchange",
+    "city": "Chicago",
+    "area": "The Loop",
+    "address": "71 E Wacker Dr, Chicago, IL 60601",
+    "shortDescription": "Beaux-Arts tower along the Chicago Riverwalk steps from Millennium Park.",
+    "description": "Overlooking the Michigan Avenue Bridge, Chicago Riverwalk Exchange offers quiet river-view suites, heated indoor lap pool, and hot Midwest breakfast daily.",
+    "rating": 8.8,
+    "stars": 4,
+    "discountPercent": 30,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Breakfast",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-10.webp",
+      "/images/hotels/photo-35.webp",
+      "/images/hotels/photo-53.webp",
+      "/images/hotels/photo-37.webp"
+    ],
+    "latitude": 41.8878,
+    "longitude": -87.6252,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Chicago",
+    "featuredTopRated": false,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "riverwalk-arch-chi-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 20000,
+        "nightlyRateCents": 14000,
+        "sortOrder": 1
+      },
+      {
+        "id": "riverwalk-arch-chi-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 26500,
+        "nightlyRateCents": 18600,
+        "sortOrder": 2
+      },
+      {
+        "id": "riverwalk-arch-chi-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 18000,
+        "nightlyRateCents": 12600,
+        "sortOrder": 3
+      },
+      {
+        "id": "riverwalk-arch-chi-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 34000,
+        "nightlyRateCents": 23800,
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "id": "lady-bird-shores-aus",
+    "name": "Lady Bird Lake Courtyard",
+    "city": "Austin",
+    "area": "South Congress",
+    "address": "110 E Riverside Dr, Austin, TX 78704",
+    "shortDescription": "South Congress boutique hotel with shaded pool deck, taco breakfast bar, and live acoustic courtyard.",
+    "description": "Steps from the Ann and Roy Butler Hike-and-Bike Trail and South Congress shops, featuring limestone terraces, cold-plunge pool, and complimentary breakfast.",
+    "rating": 8.9,
+    "stars": 4,
+    "discountPercent": 15,
+    "amenities": [
+      "WiFi",
+      "Pool",
+      "Breakfast",
+      "Parking",
+      "Air conditioning"
+    ],
+    "images": [
+      "/images/hotels/photo-07.webp",
+      "/images/hotels/photo-41.webp",
+      "/images/hotels/photo-44.webp",
+      "/images/hotels/photo-36.webp"
+    ],
+    "latitude": 30.2581,
+    "longitude": -97.7458,
+    "checkInTime": "3:00 pm",
+    "checkOutTime": "11:00 am",
+    "timezone": "America/Chicago",
+    "featuredTopRated": false,
+    "featuredDiscounted": true,
+    "rooms": [
+      {
+        "id": "lady-bird-shores-aus-double",
+        "name": "Double room",
+        "description": "Spacious queen double beds with ergonomic workspace, blackout curtains, and walk-in rainfall shower.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 16000,
+        "nightlyRateCents": 13600,
+        "sortOrder": 1
+      },
+      {
+        "id": "lady-bird-shores-aus-king",
+        "name": "King suite",
+        "description": "Corner king suite with panoramic city views, separate lounging parlor, and espresso bar.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 4,
+        "baseNightlyRateCents": 22500,
+        "nightlyRateCents": 19100,
+        "sortOrder": 2
+      },
+      {
+        "id": "lady-bird-shores-aus-twin",
+        "name": "Twin room",
+        "description": "Two plush twin beds ideal for friends or colleagues traveling together, with fast WiFi.",
+        "amenities": [
+          "WiFi",
+          "Air conditioning"
+        ],
+        "maxGuests": 2,
+        "baseNightlyRateCents": 14000,
+        "nightlyRateCents": 11900,
+        "sortOrder": 3
+      },
+      {
+        "id": "lady-bird-shores-aus-penthouse",
+        "name": "Family studio suite",
+        "description": "Two-bedroom suite with dining table, private balcony, complimentary parking, and breakfast.",
+        "amenities": [
+          "WiFi",
+          "Breakfast",
+          "Pool",
+          "Parking",
+          "Air conditioning"
+        ],
+        "maxGuests": 6,
+        "baseNightlyRateCents": 30000,
+        "nightlyRateCents": 25500,
+        "sortOrder": 4
+      }
+    ]
+  }
+]

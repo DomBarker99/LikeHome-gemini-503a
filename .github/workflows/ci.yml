@@ -132,6 +132,10 @@ jobs:
       - name: Check TypeScript types
         run: npm run typecheck
 
+      # Run Vitest unit test suite
+      - name: Run unit tests
+        run: npm run test:unit
+
     # A nonzero command exit status fails its step and this job. Later ordinary
     # steps are then skipped. There is no continue-on-error to hide failures.
     # Unit, integration and browser suites are not configured yet; none is run

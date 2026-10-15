@@ -61,6 +61,16 @@ interface ImageManifestItem {
 export async function seedDatabase(options?: { force?: boolean }) {
   console.log('[Seed] Checking database seed status...')
 
+  try {
+    await prisma.$queryRawUnsafe('SELECT 1 FROM "hotel" LIMIT 1')
+  } catch {
+    console.log(
+      '[Seed] Database tables do not exist yet. Running prisma db push...',
+    )
+    const { execSync } = await import('node:child_process')
+    execSync('npx prisma db push --skip-generate', { stdio: 'inherit' })
+  }
+
   const hotelCount = await prisma.hotel.count()
   if (hotelCount < 3000 || options?.force) {
     console.log(`[Seed] Found ${hotelCount} hotels. Seeding catalog...`)

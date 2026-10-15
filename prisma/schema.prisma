@@ -1,0 +1,197 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  phone         String?
+  preferredCity String?
+  rewardPoints  Int       @default(0)
+
+  sessions      Session[]
+  accounts      Account[]
+  bookings      Booking[]
+  savedCards    PaymentCard[]
+  pointLedger   PointTransaction[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@map("verification")
+}
+
+model Hotel {
+  id                 String    @id
+  name               String
+  city               String
+  area               String
+  address            String
+  country            String    @default("United States")
+  shortDescription   String
+  description        String
+  rating             Float
+  stars              Int
+  basePrice          Float
+  discountPercent    Int       @default(0)
+  amenities          String[]
+  images             String[]
+  latitude           Float
+  longitude          Float
+  checkInTime        String    @default("3:00 pm")
+  checkOutTime       String    @default("11:00 am")
+  timezone           String    @default("America/Los_Angeles")
+  featuredTopRated   Boolean   @default(false)
+  featuredDiscounted Boolean   @default(false)
+  rooms              Room[]
+  bookings           Booking[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([city])
+  @@index([rating])
+  @@index([basePrice])
+  @@map("hotel")
+}
+
+model Room {
+  id                   String    @id
+  hotelId              String
+  hotel                Hotel     @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  name                 String
+  description          String
+  amenities            String[]
+  maxGuests            Int
+  baseNightlyRateCents Int
+  nightlyRateCents     Int
+  sortOrder            Int       @default(1)
+  bookings             Booking[]
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([hotelId])
+  @@map("room")
+}
+
+model PaymentCard {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cardholderName String
+  brand          String
+  last4          String
+  expMonth       Int
+  expYear        Int
+  isDefault      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId])
+  @@map("payment_card")
+}
+
+model Booking {
+  id                   String             @id @default(cuid())
+  confirmationCode     String             @unique
+  userId               String
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hotelId              String
+  hotel                Hotel              @relation(fields: [hotelId], references: [id])
+  roomId               String
+  room                 Room               @relation(fields: [roomId], references: [id])
+  checkIn              DateTime
+  checkOut             DateTime
+  nights               Int
+  guests               Int
+  guestName            String
+  guestEmail           String
+  guestPhone           String
+  specialRequests      String?
+  roomRateCents        Int
+  roomSubtotalCents    Int
+  rewardDiscountCents  Int                @default(0)
+  taxesAndFeesCents    Int
+  totalChargeCents     Int
+  pointsRedeemed       Int                @default(0)
+  pointsEarned         Int                @default(0)
+  status               String             @default("UPCOMING")
+  paymentBrand         String
+  paymentLast4         String
+  cancelledAt          DateTime?
+  cancellationFeeCents Int?
+  refundAmountCents    Int?
+  pointLedger          PointTransaction[]
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@index([userId])
+  @@index([hotelId])
+  @@index([checkIn, checkOut])
+  @@map("booking")
+}
+
+model PointTransaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookingId   String?
+  booking     Booking? @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  amount      Int
+  type        String
+  description String
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@map("point_transaction")
+}

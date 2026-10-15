@@ -10,11 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as BookingRouteImport } from './routes/booking'
 import { Route as HealthRouteImport } from './routes/health'
+import { Route as MyBookingRouteImport } from './routes/my-booking'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SignUpRouteImport } from './routes/sign-up'
+import { Route as HotelsHotelIdRouteImport } from './routes/hotels.$hotelId'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth.$'
+import { Route as BookingsBookingIdIndexRouteImport } from './routes/bookings.$bookingId.index'
+import { Route as BookingsBookingIdConfirmedRouteImport } from './routes/bookings.$bookingId.confirmed'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingRoute = BookingRouteImport.update({
+  id: '/booking',
+  path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HealthRoute = HealthRouteImport.update({
@@ -22,31 +42,149 @@ const HealthRoute = HealthRouteImport.update({
   path: '/health',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MyBookingRoute = MyBookingRouteImport.update({
+  id: '/my-booking',
+  path: '/my-booking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignUpRoute = SignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotelsHotelIdRoute = HotelsHotelIdRouteImport.update({
+  id: '/hotels/$hotelId',
+  path: '/hotels/$hotelId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsBookingIdIndexRoute = BookingsBookingIdIndexRouteImport.update({
+  id: '/bookings/$bookingId/',
+  path: '/bookings/$bookingId/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsBookingIdConfirmedRoute =
+  BookingsBookingIdConfirmedRouteImport.update({
+    id: '/bookings/$bookingId/confirmed',
+    path: '/bookings/$bookingId/confirmed',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/booking': typeof BookingRoute
   '/health': typeof HealthRoute
+  '/my-booking': typeof MyBookingRoute
+  '/search': typeof SearchRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/hotels/$hotelId': typeof HotelsHotelIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/bookings/$bookingId/confirmed': typeof BookingsBookingIdConfirmedRoute
+  '/bookings/$bookingId/': typeof BookingsBookingIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/booking': typeof BookingRoute
   '/health': typeof HealthRoute
+  '/my-booking': typeof MyBookingRoute
+  '/search': typeof SearchRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/hotels/$hotelId': typeof HotelsHotelIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/bookings/$bookingId/confirmed': typeof BookingsBookingIdConfirmedRoute
+  '/bookings/$bookingId': typeof BookingsBookingIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/booking': typeof BookingRoute
   '/health': typeof HealthRoute
+  '/my-booking': typeof MyBookingRoute
+  '/search': typeof SearchRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/hotels/$hotelId': typeof HotelsHotelIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/bookings/$bookingId/confirmed': typeof BookingsBookingIdConfirmedRoute
+  '/bookings/$bookingId/': typeof BookingsBookingIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/health'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/booking'
+    | '/health'
+    | '/my-booking'
+    | '/search'
+    | '/sign-in'
+    | '/sign-up'
+    | '/hotels/$hotelId'
+    | '/api/auth/$'
+    | '/bookings/$bookingId/confirmed'
+    | '/bookings/$bookingId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/health'
-  id: '__root__' | '/' | '/health'
+  to:
+    | '/'
+    | '/account'
+    | '/booking'
+    | '/health'
+    | '/my-booking'
+    | '/search'
+    | '/sign-in'
+    | '/sign-up'
+    | '/hotels/$hotelId'
+    | '/api/auth/$'
+    | '/bookings/$bookingId/confirmed'
+    | '/bookings/$bookingId'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/booking'
+    | '/health'
+    | '/my-booking'
+    | '/search'
+    | '/sign-in'
+    | '/sign-up'
+    | '/hotels/$hotelId'
+    | '/api/auth/$'
+    | '/bookings/$bookingId/confirmed'
+    | '/bookings/$bookingId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  BookingRoute: typeof BookingRoute
   HealthRoute: typeof HealthRoute
+  MyBookingRoute: typeof MyBookingRoute
+  SearchRoute: typeof SearchRoute
+  SignInRoute: typeof SignInRoute
+  SignUpRoute: typeof SignUpRoute
+  HotelsHotelIdRoute: typeof HotelsHotelIdRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  BookingsBookingIdConfirmedRoute: typeof BookingsBookingIdConfirmedRoute
+  BookingsBookingIdIndexRoute: typeof BookingsBookingIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +196,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking': {
+      id: '/booking'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof BookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/health': {
       id: '/health'
       path: '/health'
@@ -65,12 +217,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HealthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/my-booking': {
+      id: '/my-booking'
+      path: '/my-booking'
+      fullPath: '/my-booking'
+      preLoaderRoute: typeof MyBookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hotels/$hotelId': {
+      id: '/hotels/$hotelId'
+      path: '/hotels/$hotelId'
+      fullPath: '/hotels/$hotelId'
+      preLoaderRoute: typeof HotelsHotelIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings/$bookingId/': {
+      id: '/bookings/$bookingId/'
+      path: '/bookings/$bookingId'
+      fullPath: '/bookings/$bookingId/'
+      preLoaderRoute: typeof BookingsBookingIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings/$bookingId/confirmed': {
+      id: '/bookings/$bookingId/confirmed'
+      path: '/bookings/$bookingId/confirmed'
+      fullPath: '/bookings/$bookingId/confirmed'
+      preLoaderRoute: typeof BookingsBookingIdConfirmedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  BookingRoute: BookingRoute,
   HealthRoute: HealthRoute,
+  MyBookingRoute: MyBookingRoute,
+  SearchRoute: SearchRoute,
+  SignInRoute: SignInRoute,
+  SignUpRoute: SignUpRoute,
+  HotelsHotelIdRoute: HotelsHotelIdRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
+  BookingsBookingIdConfirmedRoute: BookingsBookingIdConfirmedRoute,
+  BookingsBookingIdIndexRoute: BookingsBookingIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

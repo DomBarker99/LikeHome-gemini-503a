@@ -1,77 +1,93 @@
 import { describe, it, expect } from 'vitest'
-
-function hasStayOverlap(
-  checkIn1: Date,
-  checkOut1: Date,
-  checkIn2: Date,
-  checkOut2: Date,
-): boolean {
-  // Overlap condition: checkIn1 < checkOut2 && checkOut1 > checkIn2
-  return checkIn1 < checkOut2 && checkOut1 > checkIn2
-}
+import {
+  hasStayOverlap,
+  normalizeStayDates,
+} from '../../src/server/services/booking-service'
 
 describe('Overlapping Stay Prevention (LH-08)', () => {
   const existingCheckIn = new Date('2026-11-10T15:00:00Z')
   const existingCheckOut = new Date('2026-11-14T11:00:00Z')
 
   it('detects exact matching stay overlap', () => {
-    const newIn = new Date('2026-11-10T15:00:00Z')
-    const newOut = new Date('2026-11-14T11:00:00Z')
+    const { checkIn: newIn, checkOut: newOut } = normalizeStayDates(
+      '2026-11-10',
+      '2026-11-14',
+    )
     expect(
       hasStayOverlap(existingCheckIn, existingCheckOut, newIn, newOut),
     ).toBe(true)
   })
 
   it('detects stay inside existing stay', () => {
-    const newIn = new Date('2026-11-11T15:00:00Z')
-    const newOut = new Date('2026-11-13T11:00:00Z')
+    const { checkIn: newIn, checkOut: newOut } = normalizeStayDates(
+      '2026-11-11',
+      '2026-11-13',
+    )
     expect(
       hasStayOverlap(existingCheckIn, existingCheckOut, newIn, newOut),
     ).toBe(true)
   })
 
   it('detects partial overlap starting before and ending during existing stay', () => {
-    const newIn = new Date('2026-11-08T15:00:00Z')
-    const newOut = new Date('2026-11-12T11:00:00Z')
+    const { checkIn: newIn, checkOut: newOut } = normalizeStayDates(
+      '2026-11-08',
+      '2026-11-12',
+    )
     expect(
       hasStayOverlap(existingCheckIn, existingCheckOut, newIn, newOut),
     ).toBe(true)
   })
 
   it('detects partial overlap starting during and ending after existing stay', () => {
-    const newIn = new Date('2026-11-12T15:00:00Z')
-    const newOut = new Date('2026-11-16T11:00:00Z')
+    const { checkIn: newIn, checkOut: newOut } = normalizeStayDates(
+      '2026-11-12',
+      '2026-11-16',
+    )
     expect(
       hasStayOverlap(existingCheckIn, existingCheckOut, newIn, newOut),
     ).toBe(true)
   })
 
-  it('permits back-to-back stays where check-out equals next check-in', () => {
+  it('permits back-to-back stays where check-out equals next check-in (using date-only strings)', () => {
     // Check-out on Nov 10 at 11am, next check-in on Nov 10 at 3pm
-    const priorIn = new Date('2026-11-06T15:00:00Z')
-    const priorOut = new Date('2026-11-10T11:00:00Z')
-    expect(
-      hasStayOverlap(existingCheckIn, existingCheckOut, priorIn, priorOut),
-    ).toBe(false)
-
-    // Check-out on Nov 14 at 11am, subsequent check-in on Nov 14 at 3pm
-    const subsequentIn = new Date('2026-11-14T15:00:00Z')
-    const subsequentOut = new Date('2026-11-18T11:00:00Z')
+    const prior = normalizeStayDates('2026-11-06', '2026-11-10')
     expect(
       hasStayOverlap(
         existingCheckIn,
         existingCheckOut,
-        subsequentIn,
-        subsequentOut,
+        prior.checkIn,
+        prior.checkOut,
+      ),
+    ).toBe(false)
+
+    // Check-out on Nov 14 at 11am, subsequent check-in on Nov 14 at 3pm
+    const subsequent = normalizeStayDates('2026-11-14', '2026-11-18')
+    expect(
+      hasStayOverlap(
+        existingCheckIn,
+        existingCheckOut,
+        subsequent.checkIn,
+        subsequent.checkOut,
       ),
     ).toBe(false)
   })
 
   it('permits non-overlapping stays in different months', () => {
-    const futureIn = new Date('2026-12-01T15:00:00Z')
-    const futureOut = new Date('2026-12-05T11:00:00Z')
+    const future = normalizeStayDates('2026-12-01', '2026-12-05')
     expect(
-      hasStayOverlap(existingCheckIn, existingCheckOut, futureIn, futureOut),
+      hasStayOverlap(
+        existingCheckIn,
+        existingCheckOut,
+        future.checkIn,
+        future.checkOut,
+      ),
     ).toBe(false)
+  })
+
+  it('correctly orders check-in and check-out normalized hours', () => {
+    const dates = normalizeStayDates('2026-11-10', '2026-11-14')
+    expect(dates.checkIn.getUTCHours()).toBe(15) // 3:00 PM
+    expect(dates.checkOut.getUTCHours()).toBe(11) // 11:00 AM
+    expect(dates.checkIn < dates.checkOut).toBe(true)
   })
 })

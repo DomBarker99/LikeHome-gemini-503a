@@ -34,7 +34,8 @@ function SignUpComponent() {
         name,
         email,
         password,
-      })
+        phone: phone.trim() || undefined,
+      } as any)
 
       if (res.error) {
         setError(

@@ -1,44 +1,5 @@
 import { describe, it, expect } from 'vitest'
-
-function calculateCancellation({
-  checkIn,
-  now,
-  roomRateCents,
-  totalChargeCents,
-  nights,
-  simulateLateFee = false,
-}: {
-  checkIn: Date
-  now: Date
-  roomRateCents: number
-  totalChargeCents: number
-  nights: number
-  simulateLateFee?: boolean
-}) {
-  const daysUntilCheckIn =
-    (checkIn.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
-  const isLate = simulateLateFee || daysUntilCheckIn < 7
-
-  let feeCents = 0
-  if (isLate) {
-    if (nights === 1) {
-      feeCents = Math.round(totalChargeCents * 0.25)
-    } else {
-      feeCents = Math.min(
-        totalChargeCents,
-        roomRateCents + Math.round(roomRateCents * 0.12),
-      )
-    }
-  }
-
-  const refundCents = Math.max(0, totalChargeCents - feeCents)
-
-  return {
-    isLate,
-    feeCents,
-    refundCents,
-  }
-}
+import { calculateCancellation } from '../../src/server/services/booking-service'
 
 describe('Cancellation Policy & Fee Calculation (LH-10)', () => {
   const checkIn = new Date('2026-11-10T15:00:00Z')
@@ -124,5 +85,20 @@ describe('Cancellation Policy & Fee Calculation (LH-10)', () => {
     expect(result.refundCents).toBe(
       singleNightTotal - Math.round(singleNightTotal * 0.25),
     )
+  })
+
+  it('handles fully points-redeemed stay ($0 total charge)', () => {
+    const now = new Date('2026-11-09T15:00:00Z') // 1 day before
+    const result = calculateCancellation({
+      checkIn,
+      now,
+      roomRateCents: 16000,
+      totalChargeCents: 0,
+      nights: 1,
+    })
+
+    expect(result.isLate).toBe(true)
+    expect(result.feeCents).toBe(0)
+    expect(result.refundCents).toBe(0)
   })
 })

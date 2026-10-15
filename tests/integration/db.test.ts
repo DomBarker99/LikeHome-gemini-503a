@@ -209,4 +209,158 @@ describe('PostgreSQL Integration Tests', () => {
       bookingToCancel.totalChargeCents - cancelled.cancellationFeeCents!,
     )
   })
+
+  it('permits back-to-back booking creation with date strings (check-in on checkout date of #LH-20481)', async () => {
+    const demoUser = await prisma.user.findUnique({
+      where: { email: 'demo@likehome.dev' },
+    })
+    expect(demoUser).not.toBeNull()
+
+    // #LH-20481 is 2026-11-10 to 2026-11-14
+    // Booking starting on 2026-11-14 must NOT trigger an overlap error
+    const b2bBooking = await createBooking({
+      userId: demoUser!.id,
+      hotelId: 'figueroa-downtown-la',
+      roomId: 'figueroa-downtown-la-twin',
+      checkIn: '2026-11-14',
+      checkOut: '2026-11-17',
+      guests: 1,
+      guestName: 'B2B Test',
+      guestEmail: 'integration-test@likehome.dev',
+      guestPhone: '(555) 999-0000',
+      paymentBrand: 'VISA',
+      paymentLast4: '4242',
+    })
+
+    expect(b2bBooking.status).toBe('UPCOMING')
+    expect(b2bBooking.nights).toBe(3)
+
+    // Clean up
+    await prisma.booking.delete({ where: { id: b2bBooking.id } })
+  })
+
+  it('enforces transactional serialization under rapid concurrent overlapping booking attempts', async () => {
+    const demoUser = await prisma.user.findUnique({
+      where: { email: 'demo@likehome.dev' },
+    })
+    expect(demoUser).not.toBeNull()
+
+    const dates = {
+      checkIn: '2027-04-10',
+      checkOut: '2027-04-14',
+    }
+
+    const results = await Promise.allSettled([
+      createBooking({
+        userId: demoUser!.id,
+        hotelId: 'figueroa-downtown-la',
+        roomId: 'figueroa-downtown-la-double',
+        checkIn: dates.checkIn,
+        checkOut: dates.checkOut,
+        guests: 2,
+        guestName: 'Concurrent Test 1',
+        guestEmail: 'integration-test@likehome.dev',
+        guestPhone: '(555) 999-0001',
+        paymentBrand: 'VISA',
+        paymentLast4: '4242',
+      }),
+      createBooking({
+        userId: demoUser!.id,
+        hotelId: 'figueroa-downtown-la',
+        roomId: 'figueroa-downtown-la-double',
+        checkIn: dates.checkIn,
+        checkOut: dates.checkOut,
+        guests: 2,
+        guestName: 'Concurrent Test 2',
+        guestEmail: 'integration-test@likehome.dev',
+        guestPhone: '(555) 999-0002',
+        paymentBrand: 'VISA',
+        paymentLast4: '4242',
+      }),
+    ])
+
+    const fulfilled = results.filter((r) => r.status === 'fulfilled')
+    const rejected = results.filter((r) => r.status === 'rejected')
+
+    expect(fulfilled.length).toBe(1)
+    expect(rejected.length).toBe(1)
+    expect((rejected[0].reason as Error).message).toContain(
+      'Overlapping stay detected',
+    )
+
+    // Clean up created booking
+    await prisma.booking.deleteMany({
+      where: {
+        userId: demoUser!.id,
+        guestName: { in: ['Concurrent Test 1', 'Concurrent Test 2'] },
+      },
+    })
+  })
+
+  it('prevents reward points from going negative under concurrent point redemptions', async () => {
+    const demoUser = await prisma.user.findUnique({
+      where: { email: 'demo@likehome.dev' },
+    })
+    expect(demoUser).not.toBeNull()
+    const startingPoints = demoUser!.rewardPoints
+
+    // Attempt 2 concurrent bookings each asking to redeem 1,000 points
+    // But user only has 1,250 points, so only 1 can redeem 1,000 points
+    const results = await Promise.allSettled([
+      createBooking({
+        userId: demoUser!.id,
+        hotelId: 'figueroa-downtown-la',
+        roomId: 'figueroa-downtown-la-double',
+        checkIn: '2027-08-10',
+        checkOut: '2027-08-14',
+        guests: 2,
+        guestName: 'Points Race 1',
+        guestEmail: 'integration-test@likehome.dev',
+        guestPhone: '(555) 999-0001',
+        paymentBrand: 'VISA',
+        paymentLast4: '4242',
+        pointsToRedeem: 1000,
+      }),
+      createBooking({
+        userId: demoUser!.id,
+        hotelId: 'figueroa-downtown-la',
+        roomId: 'figueroa-downtown-la-double',
+        checkIn: '2027-09-10',
+        checkOut: '2027-09-14',
+        guests: 2,
+        guestName: 'Points Race 2',
+        guestEmail: 'integration-test@likehome.dev',
+        guestPhone: '(555) 999-0002',
+        paymentBrand: 'VISA',
+        paymentLast4: '4242',
+        pointsToRedeem: 1000,
+      }),
+    ])
+
+    expect(results.length).toBe(2)
+
+    const refreshedUser = await prisma.user.findUnique({
+      where: { id: demoUser!.id },
+    })
+    // Balance must NEVER be negative
+    expect(refreshedUser?.rewardPoints).toBeGreaterThanOrEqual(0)
+
+    // Clean up
+    await prisma.booking.deleteMany({
+      where: {
+        userId: demoUser!.id,
+        guestName: { in: ['Points Race 1', 'Points Race 2'] },
+      },
+    })
+    await prisma.pointTransaction.deleteMany({
+      where: {
+        userId: demoUser!.id,
+        description: { contains: 'Points Race' },
+      },
+    })
+    await prisma.user.update({
+      where: { id: demoUser!.id },
+      data: { rewardPoints: startingPoints },
+    })
+  })
 })

@@ -134,7 +134,7 @@ function SignInComponent() {
             <input
               type="email"
               name="email"
-              defaultValue={email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
@@ -149,7 +149,7 @@ function SignInComponent() {
             <input
               type="password"
               name="password"
-              defaultValue={password}
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"

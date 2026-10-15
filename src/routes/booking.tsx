@@ -180,6 +180,15 @@ function BookingCheckoutComponent() {
     } catch (err: any) {
       if (err?.overlap?.hasOverlap) {
         setOverlapConflict(err.overlap.conflictingBooking)
+      } else if (err?.message?.includes('Overlapping stay detected')) {
+        const overlap = await checkOverlapFn({
+          data: { checkIn, checkOut },
+        })
+        if (overlap.hasOverlap && overlap.conflictingBooking) {
+          setOverlapConflict(overlap.conflictingBooking)
+        } else {
+          setError(err.message)
+        }
       } else {
         setError(err instanceof Error ? err.message : String(err))
       }

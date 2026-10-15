@@ -16,6 +16,7 @@ import {
   getBookingByConfirmationCode,
   getBookingById,
   getUserBookings,
+  normalizeStayDates,
 } from './services/booking-service'
 import {
   getUserProfile,
@@ -84,11 +85,15 @@ export const calculatePriceFn = createServerFn({ method: 'POST' })
   .handler(async ({ data }) => {
     const session = await getServerSession()
     const userPoints = session ? (session.user.rewardPoints ?? 0) : 0
+    const { checkIn, checkOut } = normalizeStayDates(
+      data.checkIn,
+      data.checkOut,
+    )
 
     return calculateBookingPrice({
       roomRateCents: data.roomRateCents,
-      checkIn: new Date(data.checkIn),
-      checkOut: new Date(data.checkOut),
+      checkIn,
+      checkOut,
       pointsToRedeem: data.pointsToRedeem,
       userPoints,
     })
@@ -105,8 +110,8 @@ export const checkOverlapFn = createServerFn({ method: 'POST' })
 
     return await checkOverlappingStay({
       userId: session.user.id,
-      checkIn: new Date(data.checkIn),
-      checkOut: new Date(data.checkOut),
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
       excludeBookingId: data.excludeBookingId,
     })
   })
@@ -144,8 +149,8 @@ export const createBookingFn = createServerFn({ method: 'POST' })
     return await createBooking({
       ...data,
       userId: session.user.id,
-      checkIn: new Date(data.checkIn),
-      checkOut: new Date(data.checkOut),
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
     })
   })
 
@@ -186,8 +191,8 @@ export const modifyBookingFn = createServerFn({ method: 'POST' })
     return await modifyBooking({
       ...data,
       userId: session.user.id,
-      checkIn: new Date(data.checkIn),
-      checkOut: new Date(data.checkOut),
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
     })
   })
 

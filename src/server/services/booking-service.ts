@@ -1,4 +1,94 @@
 import { prisma } from '../prisma'
+import type { Prisma } from '@prisma/client'
+
+export function normalizeStayDates(
+  checkInInput: string | Date,
+  checkOutInput: string | Date,
+) {
+  const parseDate = (d: string | Date, defaultHours: number) => {
+    if (typeof d === 'string') {
+      const match = d.match(/^(\d{4})-(\d{2})-(\d{2})/)
+      if (match) {
+        const [, y, m, day] = match
+        return new Date(
+          Date.UTC(
+            Number(y),
+            Number(m) - 1,
+            Number(day),
+            defaultHours,
+            0,
+            0,
+            0,
+          ),
+        )
+      }
+    }
+    const date = new Date(d)
+    if (
+      date.getUTCHours() === 0 &&
+      date.getUTCMinutes() === 0 &&
+      date.getUTCSeconds() === 0
+    ) {
+      date.setUTCHours(defaultHours, 0, 0, 0)
+    }
+    return date
+  }
+
+  const checkIn = parseDate(checkInInput, 15) // Standard 3:00 PM check-in
+  const checkOut = parseDate(checkOutInput, 11) // Standard 11:00 AM check-out
+  return { checkIn, checkOut }
+}
+
+export function hasStayOverlap(
+  cIn1: Date,
+  cOut1: Date,
+  cIn2: Date,
+  cOut2: Date,
+): boolean {
+  return cIn1 < cOut2 && cOut1 > cIn2
+}
+
+export interface CalculateCancellationInput {
+  checkIn: Date
+  now?: Date
+  nights: number
+  roomRateCents: number
+  totalChargeCents: number
+  simulateLateFee?: boolean
+}
+
+export function calculateCancellation({
+  checkIn,
+  now = new Date(),
+  nights,
+  roomRateCents,
+  totalChargeCents,
+  simulateLateFee = false,
+}: CalculateCancellationInput) {
+  const daysUntilCheckIn =
+    (checkIn.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
+  const isLate = simulateLateFee || daysUntilCheckIn < 7
+
+  let feeCents = 0
+  if (isLate) {
+    if (nights === 1) {
+      feeCents = Math.round(totalChargeCents * 0.25)
+    } else {
+      feeCents = Math.min(
+        totalChargeCents,
+        roomRateCents + Math.round(roomRateCents * 0.12),
+      )
+    }
+  }
+
+  const refundCents = Math.max(0, totalChargeCents - feeCents)
+
+  return {
+    isLate,
+    feeCents,
+    refundCents,
+  }
+}
 
 export interface CalculatePriceInput {
   roomRateCents: number
@@ -56,16 +146,21 @@ export function calculateBookingPrice({
 
 export async function checkOverlappingStay({
   userId,
-  checkIn,
-  checkOut,
+  checkIn: rawCheckIn,
+  checkOut: rawCheckOut,
   excludeBookingId,
+  client,
 }: {
   userId: string
-  checkIn: Date
-  checkOut: Date
+  checkIn: string | Date
+  checkOut: string | Date
   excludeBookingId?: string
+  client?: Prisma.TransactionClient
 }) {
-  const conflicting = await prisma.booking.findFirst({
+  const { checkIn, checkOut } = normalizeStayDates(rawCheckIn, rawCheckOut)
+  const db = client || prisma
+
+  const conflicting = await db.booking.findFirst({
     where: {
       userId,
       status: 'UPCOMING',
@@ -100,8 +195,8 @@ export async function createBooking({
   userId,
   hotelId,
   roomId,
-  checkIn,
-  checkOut,
+  checkIn: rawCheckIn,
+  checkOut: rawCheckOut,
   guests,
   guestName,
   guestEmail,
@@ -115,8 +210,8 @@ export async function createBooking({
   userId: string
   hotelId: string
   roomId: string
-  checkIn: Date
-  checkOut: Date
+  checkIn: string | Date
+  checkOut: string | Date
   guests: number
   guestName: string
   guestEmail: string
@@ -133,13 +228,21 @@ export async function createBooking({
     expYear: number
   }
 }) {
-  const [user, hotel, room] = await Promise.all([
-    prisma.user.findUnique({ where: { id: userId } }),
+  const { checkIn, checkOut } = normalizeStayDates(rawCheckIn, rawCheckOut)
+
+  if (checkOut <= checkIn) {
+    throw new Error('Check-out date must be after check-in date')
+  }
+
+  if (!guests || guests < 1) {
+    throw new Error('Guests must be at least 1')
+  }
+
+  const [hotel, room] = await Promise.all([
     prisma.hotel.findUnique({ where: { id: hotelId } }),
     prisma.room.findUnique({ where: { id: roomId } }),
   ])
 
-  if (!user) throw new Error('User not found')
   if (!hotel) throw new Error('Hotel not found')
   if (!room) throw new Error('Room not found')
 
@@ -147,35 +250,46 @@ export async function createBooking({
     throw new Error(`Room maximum capacity is ${room.maxGuests} guests`)
   }
 
-  // LH-08 Overlap prevention
-  const overlap = await checkOverlappingStay({
-    userId,
-    checkIn,
-    checkOut,
-  })
-
-  if (overlap.hasOverlap && overlap.conflictingBooking) {
-    const err = new Error(
-      `Overlapping stay detected with #${overlap.conflictingBooking.confirmationCode}`,
-    )
-    ;(err as unknown as { overlap: typeof overlap }).overlap = overlap
-    throw err
-  }
-
-  const pricing = calculateBookingPrice({
-    roomRateCents: room.nightlyRateCents,
-    checkIn,
-    checkOut,
-    pointsToRedeem,
-    userPoints: user.rewardPoints,
-  })
-
   // Generate confirmation code: LH-XXXXX
   const randomSuffix = Math.floor(10000 + Math.random() * 90000)
   const confirmationCode = `LH-${randomSuffix}`
 
-  // Execute in Prisma transaction
+  // Execute in Prisma transaction with user-level row lock to serialize concurrent bookings & points operations
   return await prisma.$transaction(async (tx) => {
+    const lockedUser = await tx.$queryRawUnsafe<
+      Array<{ id: string; rewardPoints: number }>
+    >('SELECT id, "rewardPoints" FROM "user" WHERE id = $1 FOR UPDATE', userId)
+
+    if (lockedUser.length === 0) {
+      throw new Error('User not found')
+    }
+
+    const currentPoints = lockedUser[0].rewardPoints || 0
+
+    // Enforce LH-08 Overlap prevention strictly inside the locked transaction
+    const overlap = await checkOverlappingStay({
+      userId,
+      checkIn,
+      checkOut,
+      client: tx,
+    })
+
+    if (overlap.hasOverlap && overlap.conflictingBooking) {
+      const err = new Error(
+        `Overlapping stay detected with #${overlap.conflictingBooking.confirmationCode}`,
+      )
+      ;(err as unknown as { overlap: typeof overlap }).overlap = overlap
+      throw err
+    }
+
+    const pricing = calculateBookingPrice({
+      roomRateCents: room.nightlyRateCents,
+      checkIn,
+      checkOut,
+      pointsToRedeem,
+      userPoints: currentPoints,
+    })
+
     // If points redeemed, deduct from user and record ledger
     if (pricing.pointsRedeemed > 0) {
       await tx.user.update({
@@ -261,26 +375,25 @@ export async function modifyBooking({
   bookingId,
   userId,
   roomId,
-  checkIn,
-  checkOut,
+  checkIn: rawCheckIn,
+  checkOut: rawCheckOut,
   guests,
 }: {
   bookingId: string
   userId: string
   roomId: string
-  checkIn: Date
-  checkOut: Date
+  checkIn: string | Date
+  checkOut: string | Date
   guests: number
 }) {
-  const booking = await prisma.booking.findUnique({
-    where: { id: bookingId },
-    include: { hotel: true },
-  })
+  const { checkIn, checkOut } = normalizeStayDates(rawCheckIn, rawCheckOut)
 
-  if (!booking) throw new Error('Booking not found')
-  if (booking.userId !== userId) throw new Error('Unauthorized')
-  if (booking.status !== 'UPCOMING') {
-    throw new Error('Only upcoming bookings can be modified')
+  if (checkOut <= checkIn) {
+    throw new Error('Check-out date must be after check-in date')
+  }
+
+  if (!guests || guests < 1) {
+    throw new Error('Guests must be at least 1')
   }
 
   const room = await prisma.room.findUnique({
@@ -291,52 +404,71 @@ export async function modifyBooking({
     throw new Error(`Room maximum capacity is ${room.maxGuests} guests`)
   }
 
-  // Overlap check excluding current booking
-  const overlap = await checkOverlappingStay({
-    userId,
-    checkIn,
-    checkOut,
-    excludeBookingId: bookingId,
-  })
-
-  if (overlap.hasOverlap && overlap.conflictingBooking) {
-    const err = new Error(
-      `Overlapping stay detected with #${overlap.conflictingBooking.confirmationCode}`,
+  return await prisma.$transaction(async (tx) => {
+    await tx.$queryRawUnsafe(
+      'SELECT id FROM "user" WHERE id = $1 FOR UPDATE',
+      userId,
     )
-    ;(err as unknown as { overlap: typeof overlap }).overlap = overlap
-    throw err
-  }
 
-  const pricing = calculateBookingPrice({
-    roomRateCents: room.nightlyRateCents,
-    checkIn,
-    checkOut,
-    pointsToRedeem: booking.pointsRedeemed,
-    userPoints: 999999, // Already validated on initial booking
-  })
+    const booking = await tx.booking.findUnique({
+      where: { id: bookingId },
+      include: { hotel: true },
+    })
 
-  const updated = await prisma.booking.update({
-    where: { id: bookingId },
-    data: {
-      roomId,
+    if (!booking) throw new Error('Booking not found')
+    if (booking.userId !== userId) throw new Error('Unauthorized')
+    if (booking.status !== 'UPCOMING') {
+      throw new Error('Only upcoming bookings can be modified')
+    }
+
+    // Overlap check excluding current booking
+    const overlap = await checkOverlappingStay({
+      userId,
       checkIn,
       checkOut,
-      guests,
-      nights: pricing.nights,
-      roomRateCents: pricing.roomRateCents,
-      roomSubtotalCents: pricing.roomSubtotalCents,
-      rewardDiscountCents: pricing.rewardDiscountCents,
-      taxesAndFeesCents: pricing.taxesAndFeesCents,
-      totalChargeCents: pricing.totalChargeCents,
-      pointsEarned: pricing.pointsEarned,
-    },
-    include: {
-      hotel: true,
-      room: true,
-    },
-  })
+      excludeBookingId: bookingId,
+      client: tx,
+    })
 
-  return updated
+    if (overlap.hasOverlap && overlap.conflictingBooking) {
+      const err = new Error(
+        `Overlapping stay detected with #${overlap.conflictingBooking.confirmationCode}`,
+      )
+      ;(err as unknown as { overlap: typeof overlap }).overlap = overlap
+      throw err
+    }
+
+    const pricing = calculateBookingPrice({
+      roomRateCents: room.nightlyRateCents,
+      checkIn,
+      checkOut,
+      pointsToRedeem: booking.pointsRedeemed,
+      userPoints: 999999, // Already validated on initial booking
+    })
+
+    const updated = await tx.booking.update({
+      where: { id: bookingId },
+      data: {
+        roomId,
+        checkIn,
+        checkOut,
+        guests,
+        nights: pricing.nights,
+        roomRateCents: pricing.roomRateCents,
+        roomSubtotalCents: pricing.roomSubtotalCents,
+        rewardDiscountCents: pricing.rewardDiscountCents,
+        taxesAndFeesCents: pricing.taxesAndFeesCents,
+        totalChargeCents: pricing.totalChargeCents,
+        pointsEarned: pricing.pointsEarned,
+      },
+      include: {
+        hotel: true,
+        room: true,
+      },
+    })
+
+    return updated
+  })
 }
 
 export async function cancelBooking({
@@ -348,42 +480,32 @@ export async function cancelBooking({
   userId: string
   simulateLateFee?: boolean
 }) {
-  const booking = await prisma.booking.findUnique({
-    where: { id: bookingId },
-    include: { hotel: true },
-  })
-
-  if (!booking) throw new Error('Booking not found')
-  if (booking.userId !== userId) throw new Error('Unauthorized')
-  if (booking.status !== 'UPCOMING') {
-    throw new Error('Only upcoming bookings can be cancelled')
-  }
-
-  const now = new Date()
-  const daysUntilCheckIn =
-    (booking.checkIn.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
-
-  const isLate = simulateLateFee || daysUntilCheckIn < 7
-
-  let cancellationFeeCents = 0
-  if (isLate) {
-    if (booking.nights === 1) {
-      cancellationFeeCents = Math.round(booking.totalChargeCents * 0.25)
-    } else {
-      // 1 night room rate + 12% tax
-      cancellationFeeCents = Math.min(
-        booking.totalChargeCents,
-        booking.roomRateCents + Math.round(booking.roomRateCents * 0.12),
-      )
-    }
-  }
-
-  const refundAmountCents = Math.max(
-    0,
-    booking.totalChargeCents - cancellationFeeCents,
-  )
-
   return await prisma.$transaction(async (tx) => {
+    await tx.$queryRawUnsafe(
+      'SELECT id FROM "user" WHERE id = $1 FOR UPDATE',
+      userId,
+    )
+
+    const booking = await tx.booking.findUnique({
+      where: { id: bookingId },
+      include: { hotel: true },
+    })
+
+    if (!booking) throw new Error('Booking not found')
+    if (booking.userId !== userId) throw new Error('Unauthorized')
+    if (booking.status !== 'UPCOMING') {
+      throw new Error('Only upcoming bookings can be cancelled')
+    }
+
+    const calculation = calculateCancellation({
+      checkIn: booking.checkIn,
+      now: new Date(),
+      nights: booking.nights,
+      roomRateCents: booking.roomRateCents,
+      totalChargeCents: booking.totalChargeCents,
+      simulateLateFee,
+    })
+
     // If points were redeemed, restore them to the user
     if (booking.pointsRedeemed > 0) {
       await tx.user.update({
@@ -409,8 +531,9 @@ export async function cancelBooking({
       data: {
         status: 'CANCELLED',
         cancelledAt: new Date(),
-        cancellationFeeCents,
-        refundAmountCents,
+        cancellationFeeCents: calculation.feeCents,
+        refundAmountCents: calculation.refundCents,
+        pointsEarned: 0,
       },
       include: {
         hotel: true,
@@ -423,18 +546,23 @@ export async function cancelBooking({
 }
 
 export async function completeBookingStay(bookingId: string, userId: string) {
-  const booking = await prisma.booking.findUnique({
-    where: { id: bookingId },
-    include: { hotel: true },
-  })
-
-  if (!booking) throw new Error('Booking not found')
-  if (booking.userId !== userId) throw new Error('Unauthorized')
-  if (booking.status !== 'UPCOMING') {
-    throw new Error('Only upcoming bookings can be marked completed')
-  }
-
   return await prisma.$transaction(async (tx) => {
+    await tx.$queryRawUnsafe(
+      'SELECT id FROM "user" WHERE id = $1 FOR UPDATE',
+      userId,
+    )
+
+    const booking = await tx.booking.findUnique({
+      where: { id: bookingId },
+      include: { hotel: true },
+    })
+
+    if (!booking) throw new Error('Booking not found')
+    if (booking.userId !== userId) throw new Error('Unauthorized')
+    if (booking.status !== 'UPCOMING') {
+      throw new Error('Only upcoming bookings can be marked completed')
+    }
+
     // Award earned points to user
     await tx.user.update({
       where: { id: userId },
